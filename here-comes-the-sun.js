@@ -1,16 +1,21 @@
-const body = document.getElementsByTagName('body')[0]
-console.log(body)
-const h1 = document.getElementsByTagName('h1')[0]
-let bodyRGB = 0
-let textRGB = 255
-let bodyColor = setInterval(()=>{
-    if(bodyRGB<256 && textRGB>0){
-        bodyRGB++
-        textRGB--
-        // two ways on doing this 
-        body.setAttribute('style', `background-color: rgb(${bodyRGB}, ${bodyRGB} , ${bodyRGB}`)
-        h1.style.color = `rgb(${textRGB}, ${textRGB}, ${textRGB})`
-    }else{
-        clearInterval(bodyColor)
+/*
+const animateFn = function() {
+    //in a conditional,
+        //call requestAnimationFrame(animateFn)
+}
+*/
+
+//animate the background-color of the body so that it changes 
+//from black rgb(0, 0, 0) 
+//to white rgb(255, 255, 255)
+
+let colorIndex = 0
+const lighten = function() {
+    if (colorIndex < 255) {
+        colorIndex++
+        document.body.style.backgroundColor = `rgb(${colorIndex}, ${colorIndex}, ${colorIndex})`
+        requestAnimationFrame(lighten)
     }
-},500)
+}
+
+requestAnimationFrame(lighten)
